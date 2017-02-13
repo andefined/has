@@ -2,57 +2,72 @@ package has_test
 
 import (
 	"fmt"
+	"io/ioutil"
 	"testing"
 
 	"github.com/andefined/has"
 )
 
-func TestHasEmail(t *testing.T) {
-	val := has.Email("one@email.com, two@mail.com, harrypotter [at] hogwarts [dot] ac (dot) uk")
-	fmt.Print("Email: ", len(val), val, "\n")
-}
+func TestAll(t *testing.T) {
+	dat, err := ioutil.ReadFile("examples/articles.md")
+	if err != nil {
+		panic(err)
+	}
 
-func TestHasIPv4(t *testing.T) {
-	val := has.IPv4("252.168.1.1 252.168.1.2")
-	fmt.Print("IPv4: ", len(val), val, "\n")
-}
+	emails := has.Email(string(dat))
+	fmt.Print("Email: ", len(emails), emails, "\n")
 
-func TestHasIPv6(t *testing.T) {
-	val := has.IPv6("2001:0db8:0000:0000:0000:ff00:0042:8329, 2001:db8:0:0:0:ff00:42:8329, 2001:db8::ff00:42:8329")
-	fmt.Print("IPv6: ", len(val), val, "\n")
-}
+	ipv4s := has.IPv4(string(dat))
+	fmt.Print("IPv4: ", len(ipv4s), ipv4s, "\n")
 
-func TestHasBitcoinAddress(t *testing.T) {
-	val := has.BitcoinAddress("2F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX, 1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX")
-	fmt.Print("Bitcoin: ", len(val), val, "\n")
-}
+	ipv6s := has.IPv6(string(dat))
+	fmt.Print("IPv6: ", len(ipv6s), ipv6s, "\n")
 
-func TestHasMD5(t *testing.T) {
-	val := has.MD5("00236a2ae558018ed13b5222ef1bd977")
-	fmt.Print("MD5: ", len(val), val, "\n")
-}
+	macs := has.MAC(string(dat))
+	fmt.Print("MAC: ", len(macs), macs, "\n")
 
-func TestHasSHA1(t *testing.T) {
-	val := has.SHA1("da39a3ee5e6b4b0d3255bfef95601890afd80709 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e c672b8d1ef56ed28ab87c3622c5114069bdd3ad7b8f9737498d0c01ecef0967a 38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b da39a3ee5e6b4b0d3255bfef95601890afd80709 13DFB2603BD6893F4EFA9F0B6205A32DB54D9E259C20C1AD35D4D8AA2962D3609EE73C3D26B28B5742A555B44C11E212CFFA887EC0A34342BE85C4B92CAA4CD2")
-	fmt.Print("SHA1: ", len(val), val, "\n")
-}
+	urls := has.URL(string(dat))
+	fmt.Print("URL: ", len(urls), urls, "\n")
 
-func TestHasSHA256(t *testing.T) {
-	val := has.SHA256("da39a3ee5e6b4b0d3255bfef95601890afd80709 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e c672b8d1ef56ed28ab87c3622c5114069bdd3ad7b8f9737498d0c01ecef0967a 38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b da39a3ee5e6b4b0d3255bfef95601890afd80709 13DFB2603BD6893F4EFA9F0B6205A32DB54D9E259C20C1AD35D4D8AA2962D3609EE73C3D26B28B5742A555B44C11E212CFFA887EC0A34342BE85C4B92CAA4CD2")
-	fmt.Print("SHA256: ", len(val), val, "\n")
-}
+	hostnames := has.Hostname(string(dat))
+	fmt.Print("Hostname: ", len(hostnames), hostnames, "\n")
 
-func TestHasSHA512(t *testing.T) {
-	val := has.SHA512("da39a3ee5e6b4b0d3255bfef95601890afd80709 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e c672b8d1ef56ed28ab87c3622c5114069bdd3ad7b8f9737498d0c01ecef0967a 38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da274edebfe76f65fbd51ad2f14898b95b da39a3ee5e6b4b0d3255bfef95601890afd80709 13DFB2603BD6893F4EFA9F0B6205A32DB54D9E259C20C1AD35D4D8AA2962D3609EE73C3D26B28B5742A555B44C11E212CFFA887EC0A34342BE85C4B92CAA4CD2")
-	fmt.Print("SHA512: ", len(val), val, "\n")
-}
+	domains := has.Domain(string(dat))
+	fmt.Print("Domain: ", len(domains), domains, "\n")
 
-func TestHasSSDeep(t *testing.T) {
-	val := has.SSDeep("125:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855:921d36ce9ce47d0d13c5d85f2b0ff")
-	fmt.Print("SSDeep: ", len(val), val, "\n")
-}
+	dnss := has.DNS(string(dat))
+	fmt.Print("DNS: ", len(dnss), dnss, "\n")
 
-func TestHasMAC(t *testing.T) {
-	val := has.MAC("12:23:45:55:77:88 12:23:45:5Z:77:88 12B5.1a34.4567 12B5.1G34.4567 969982549025 96998G549025 1B-F2-43-44-55-41 1B-F2-43-44-55-G1")
-	fmt.Print("MAC: ", len(val), val, "\n")
+	md5s := has.MD5(string(dat))
+	fmt.Print("MD5: ", len(md5s), md5s, "\n")
+
+	sha1s := has.SHA1(string(dat))
+	fmt.Print("SHA1: ", len(sha1s), sha1s, "\n")
+
+	sha256s := has.SHA256(string(dat))
+	fmt.Print("SHA256: ", len(sha256s), sha256s, "\n")
+
+	sha512s := has.SHA512(string(dat))
+	fmt.Print("SHA512: ", len(sha512s), sha512s, "\n")
+
+	ssdeeps := has.SSDeep(string(dat))
+	fmt.Print("SSDeep: ", len(ssdeeps), ssdeeps, "\n")
+
+	uuids := has.UUID(string(dat))
+	fmt.Print("UUID: ", len(uuids), uuids, "\n")
+
+	bitcoinaddresses := has.BitcoinAddress(string(dat))
+	fmt.Print("BitcoinAddress: ", len(bitcoinaddresses), bitcoinaddresses, "\n")
+
+	creditcards := has.CreditCard(string(dat))
+	fmt.Print("CreditCard: ", len(creditcards), creditcards, "\n")
+
+	winpaths := has.WinPath(string(dat))
+	fmt.Print("WinPath: ", len(winpaths), winpaths, "\n")
+
+	unixpaths := has.UnixPath(string(dat))
+	fmt.Print("UnixPath: ", len(unixpaths), unixpaths, "\n")
+
+	shellshocks := has.ShellShock(string(dat))
+	fmt.Print("ShellShock: ", len(shellshocks), shellshocks, "\n")
 }

@@ -2,15 +2,20 @@ package has
 
 import "regexp"
 
+const (
+	at  string = `| *\[ *at *\] *| *\( *at *\) *| *\{ *at *\} *| *- *at *- *| *\[ *@ *\] *| *\( *@ *\) *| *\{ *@ *\} *| *- *@ *- *`        // @ symbol
+	dot string = `| *\[ *dot *\] *| *\( *dot *\) *| *\{ *dot *\} *| *- *dot *- *| *\[ *\. *\] *| *\( *\. *\) *| *\{ *\. *\} *| *- *. *- *` // . symbol
+)
+
 // ReEmail : RegExp Compilation
 func ReEmail() *regexp.Regexp {
-	r := regexp.MustCompile(`\b[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_{|}~-]+)*(@| *\[ *at *\] *| *\( *at *\) *| *\{ *at *\} *| *- *at *- *| *\[ *@ *\] *| *\( *@ *\) *| *\{ *@ *\} *| *- *@ *- *)(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(\.| *\[ *dot *\] *| *\( *dot *\) *| *\{ *dot *\} *| *- *dot *- *| *\[ *\. *\] *| *\( *\. *\) *| *\{ *\. *\} *| *- *. *- *))+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\b`)
+	r := regexp.MustCompile(`\b[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_{|}~-]+)*(\@` + at + `)(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(\.` + dot + `))+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\b`)
 	return r
 }
 
 // ReIPv4 : RegExp Compilation
 func ReIPv4() *regexp.Regexp {
-	r := regexp.MustCompile(`\b((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\b`)
+	r := regexp.MustCompile(`\b(?:(?:2(?:[0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9])?(\.` + dot + `)){3}(?:(?:2([0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]))\b`)
 	return r
 }
 
@@ -28,13 +33,13 @@ func ReMAC() *regexp.Regexp {
 
 // ReURL : RegExp Compilation
 func ReURL() *regexp.Regexp {
-	r := regexp.MustCompile(`^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$`)
+	r := regexp.MustCompile(`\b((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?\b`)
 	return r
 }
 
 // ReHostname : RegExp Compilation
 func ReHostname() *regexp.Regexp {
-	r := regexp.MustCompile(`^(?!http|https|https:\/\/|http:\/\/)([?a-zA-Z0-9-.\+]{2,256}\.[a-z]{2,4}\b)`)
+	r := regexp.MustCompile(`^((http[s]?|ftp):\/)?\/?([^:\/\s]+)([?a-zA-Z0-9-.\+]{2,256}\.[a-z]{2,4}\b)`)
 	return r
 }
 

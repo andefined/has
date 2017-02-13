@@ -1,8 +1,6 @@
 package has
 
 // Email : has.Email
-// TODO: Use RFC 5322, Introduce SubMatches
-// ex. harrypotter [at] hogwarts [dot] ac (dot) uk
 func Email(str string) []string {
 	elements := ReEmail().FindAllString(str, -1)
 	return removeDuplicates(elements)
