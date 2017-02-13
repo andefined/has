@@ -4,18 +4,20 @@ import "regexp"
 
 // ReEmail : RegExp Compilation
 func ReEmail() *regexp.Regexp {
-	r := regexp.MustCompile("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
+	r := regexp.MustCompile(`\b[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\b$`)
 	return r
 }
 
 // ReIPv4 : RegExp Compilation
-func ReIPv4() string {
-	return ""
+func ReIPv4() *regexp.Regexp {
+	r := regexp.MustCompile(`\b((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\b`)
+	return r
 }
 
 // ReIPv6 : RegExp Compilation
-func ReIPv6() string {
-	return ""
+func ReIPv6() *regexp.Regexp {
+	r := regexp.MustCompile(`\b(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))\b`)
+	return r
 }
 
 // ReMAC : RegExp Compilation
@@ -24,8 +26,9 @@ func ReMAC() string {
 }
 
 // ReURL : RegExp Compilation
-func ReURL() string {
-	return ""
+func ReURL() *regexp.Regexp {
+	r := regexp.MustCompile(`^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$`)
+	return r
 }
 
 // ReURI : RegExp Compilation
@@ -49,8 +52,9 @@ func ReDNS() string {
 }
 
 // ReMD5 : RegExp Compilation
-func ReMD5() string {
-	return ""
+func ReMD5() *regexp.Regexp {
+	r := regexp.MustCompile(`^[a-fA-F0-9]{32}$`)
+	return r
 }
 
 // ReSHA1 : RegExp Compilation
@@ -83,28 +87,13 @@ func ReUUID() string {
 	return ""
 }
 
-// ReUUID3 : RegExp Compilation
-func ReUUID3() string {
-	return ""
-}
-
-// ReUUID4 : RegExp Compilation
-func ReUUID4() string {
-	return ""
-}
-
-// ReUUID5 : RegExp Compilation
-func ReUUID5() string {
-	return ""
-}
-
 // ReDataURI : RegExp Compilation
 func ReDataURI() string {
 	return ""
 }
 
-// ReBitcoin : RegExp Compilation
-func ReBitcoin() *regexp.Regexp {
+// ReBitcoinAddress : RegExp Compilation
+func ReBitcoinAddress() *regexp.Regexp {
 	r := regexp.MustCompile("([123mn][a-km-zA-HJ-NP-Z1-9]{25,34})")
 	return r
 }

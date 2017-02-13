@@ -1,15 +1,37 @@
 package has
 
-// Email ...
+// Email : has.Email
+// TODO: Use RFC 5322, Introduce SubMatches
+// ex. harrypotter [at] hogwarts [dot] ac (dot) uk
 func Email(str string) []string {
-	elemetns := ReEmail().FindStringSubmatch(str)
-	return removeDuplicates(elemetns)
+	elements := ReEmail().FindAllString(str, -1)
+	return removeDuplicates(elements)
 }
 
-// Bitcoin ...
-func Bitcoin(str string) []string {
-	elemetns := ReBitcoin().FindStringSubmatch(str)
-	return removeDuplicates(elemetns)
+// IPv4 : has.IPv4
+// TODO: Validate IP using net.ParseIP
+func IPv4(s string) []string {
+	elements := ReIPv4().FindAllString(s, -1)
+	return removeDuplicates(elements)
+}
+
+// IPv6 : has.IPv6
+// TODO: Validate IP using net.ParseIP
+func IPv6(s string) []string {
+	elements := ReIPv6().FindAllString(s, -1)
+	return removeDuplicates(elements)
+}
+
+// BitcoinAddress : has.BitcoinAddress
+func BitcoinAddress(s string) []string {
+	elements := ReBitcoinAddress().FindAllString(s, -1)
+	return removeDuplicates(elements)
+}
+
+// MD5 : has.MD5
+func MD5(s string) []string {
+	elements := ReMD5().FindAllString(s, -1)
+	return removeDuplicates(elements)
 }
 
 // Helper Function
