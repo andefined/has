@@ -4,7 +4,7 @@ import "regexp"
 
 // ReEmail : RegExp Compilation
 func ReEmail() *regexp.Regexp {
-	r := regexp.MustCompile(`\b[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\b$`)
+	r := regexp.MustCompile(`\b[a-z0-9!#$%&'*+/=?^_{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_{|}~-]+)*(@| *\[ *at *\] *| *\( *at *\) *| *\{ *at *\} *| *- *at *- *| *\[ *@ *\] *| *\( *@ *\) *| *\{ *@ *\} *| *- *@ *- *)(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(\.| *\[ *dot *\] *| *\( *dot *\) *| *\{ *dot *\} *| *- *dot *- *| *\[ *\. *\] *| *\( *\. *\) *| *\{ *\. *\} *| *- *. *- *))+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\b`)
 	return r
 }
 
@@ -21,8 +21,9 @@ func ReIPv6() *regexp.Regexp {
 }
 
 // ReMAC : RegExp Compilation
-func ReMAC() string {
-	return ""
+func ReMAC() *regexp.Regexp {
+	r := regexp.MustCompile(`(([0-9A-Fa-f]{2}[-:]){5}[0-9A-Fa-f]{2})|(([0-9A-Fa-f]{4}\.){2}[0-9A-Fa-f]{4}|([0-9A-Fa-f]{12}))`)
+	return r
 }
 
 // ReURL : RegExp Compilation
@@ -31,24 +32,22 @@ func ReURL() *regexp.Regexp {
 	return r
 }
 
-// ReURI : RegExp Compilation
-func ReURI() string {
-	return ""
-}
-
 // ReHostname : RegExp Compilation
-func ReHostname() string {
-	return ""
+func ReHostname() *regexp.Regexp {
+	r := regexp.MustCompile(`^(?!http|https|https:\/\/|http:\/\/)([?a-zA-Z0-9-.\+]{2,256}\.[a-z]{2,4}\b)`)
+	return r
 }
 
 // ReDomain : RegExp Compilation
-func ReDomain() string {
-	return ""
+func ReDomain() *regexp.Regexp {
+	r := regexp.MustCompile(`^((?:([a-z0-9]\.|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9])\.)+)([a-z0-9]{2,63}|(?:[a-z0-9][a-z0-9\-]{0,61}[a-z0-9]))\.?$`)
+	return r
 }
 
 // ReDNS : RegExp Compilation
-func ReDNS() string {
-	return ""
+func ReDNS() *regexp.Regexp {
+	r := regexp.MustCompile(`^((?:([a-z0-9]\.|[a-z0-9][a-z0-9\-]{0,61}[a-z0-9])\.)+)([a-z0-9]{2,63}|(?:[a-z0-9][a-z0-9\-]{0,61}[a-z0-9]))\.?$`)
+	return r
 }
 
 // ReMD5 : RegExp Compilation
@@ -58,38 +57,33 @@ func ReMD5() *regexp.Regexp {
 }
 
 // ReSHA1 : RegExp Compilation
-func ReSHA1() string {
-	return ""
-}
-
-// ReSHA2 : RegExp Compilation
-func ReSHA2() string {
-	return ""
+func ReSHA1() *regexp.Regexp {
+	r := regexp.MustCompile(`\b([a-fA-F0-9]{40})\b`)
+	return r
 }
 
 // ReSHA256 : RegExp Compilation
-func ReSHA256() string {
-	return ""
+func ReSHA256() *regexp.Regexp {
+	r := regexp.MustCompile(`\b([a-fA-F0-9]{64})\b`)
+	return r
 }
 
 // ReSHA512 : RegExp Compilation
-func ReSHA512() string {
-	return ""
+func ReSHA512() *regexp.Regexp {
+	r := regexp.MustCompile(`\b([a-fA-F0-9]{128})\b`)
+	return r
 }
 
 // ReSSDeep : RegExp Compilation
-func ReSSDeep() string {
-	return ""
+func ReSSDeep() *regexp.Regexp {
+	r := regexp.MustCompile(`\b([\d]{1,10}:[a-zA-Z\d+/]{1,100}:[a-zA-Z\d+/]{1,100})\b`)
+	return r
 }
 
 // ReUUID : RegExp Compilation
-func ReUUID() string {
-	return ""
-}
-
-// ReDataURI : RegExp Compilation
-func ReDataURI() string {
-	return ""
+func ReUUID() *regexp.Regexp {
+	r := regexp.MustCompile(`^([0-9a-f]{8}-?[0-9a-f]{4}-?[1-5][0-9a-f]{3}-?[0-9a-f]{4}-?[0-9a-f]{12}|\{[0-9a-f]{8}-?[0-9a-f]{4}-?[1-5][0-9a-f]{3}-?[0-9a-f]{4}-?[0-9a-f]{12}\}|[A-Za-z0-9+/]{22})$`)
+	return r
 }
 
 // ReBitcoinAddress : RegExp Compilation
@@ -98,22 +92,26 @@ func ReBitcoinAddress() *regexp.Regexp {
 	return r
 }
 
-// ReSSN : RegExp Compilation
-func ReSSN() string {
-	return ""
-}
-
 // ReCreditCard : RegExp Compilation
-func ReCreditCard() string {
-	return ""
+func ReCreditCard() *regexp.Regexp {
+	r := regexp.MustCompile(`^(?:\d[ -]*?){13,16}$`)
+	return r
 }
 
 // ReWinPath : RegExp Compilation
-func ReWinPath() string {
-	return ""
+func ReWinPath() *regexp.Regexp {
+	r := regexp.MustCompile(`^([a-zA-Z]):[\\\/]((?:[^<>:"\\\/\|\?\*]+[\\\/])*)([^<>:"\\\/\|\?\*]+)\.([^<>:"\\\/\|\?\*\s]+)$`)
+	return r
 }
 
 // ReUnixPath : RegExp Compilation
-func ReUnixPath() string {
-	return ""
+func ReUnixPath() *regexp.Regexp {
+	r := regexp.MustCompile(`^(((?:\./|\.\./|/)?(?:\.?\w+/)*)(\.?\w+\.?\w+))$`)
+	return r
+}
+
+// ReShellShock : RegExp Compilation
+func ReShellShock() *regexp.Regexp {
+	r := regexp.MustCompile(`\s*\(\s*\)\s*\{.*?;\s*\}\s*;`)
+	return r
 }
