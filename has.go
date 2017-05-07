@@ -1,29 +1,62 @@
 package has
 
+import (
+	"net"
+	"regexp"
+)
+
 // Email : has.Email
 func Email(str string) []string {
 	elements := ReEmail.FindAllString(str, -1)
-	return removeDuplicates(elements)
+	var c []string
+	for i := range elements {
+		email := elements[i]
+		reAT := regexp.MustCompile(`(\.` + at + `\b)`)
+		reDOT := regexp.MustCompile(`(\.` + dot + `\b)`)
+		email = reAT.ReplaceAllString(email, `@`)
+		email = reDOT.ReplaceAllString(email, `.`)
+		c = append(c, email)
+	}
+	return removeDuplicates(c)
 }
 
 // IPv4 : has.IPv4
-// TODO: Validate IP using net.ParseIP
 func IPv4(s string) []string {
 	elements := ReIPv4.FindAllString(s, -1)
-	return removeDuplicates(elements)
+	var c []string
+	for i := range elements {
+		ip := net.ParseIP(elements[i])
+		if ip != nil {
+			c = append(c, elements[i])
+		}
+	}
+	return removeDuplicates(c)
 }
 
 // IPv6 : has.IPv6
-// TODO: Validate IP using net.ParseIP
 func IPv6(s string) []string {
 	elements := ReIPv6.FindAllString(s, -1)
-	return removeDuplicates(elements)
+	var c []string
+	for i := range elements {
+		ip := net.ParseIP(elements[i])
+		if ip != nil {
+			c = append(c, elements[i])
+		}
+	}
+	return removeDuplicates(c)
 }
 
 // MAC : has.MAC
 func MAC(s string) []string {
 	elements := ReMAC.FindAllString(s, -1)
-	return removeDuplicates(elements)
+	var c []string
+	for i := range elements {
+		_, err := net.ParseMAC(elements[i])
+		if err == nil {
+			c = append(c, elements[i])
+		}
+	}
+	return removeDuplicates(c)
 }
 
 // URL : has.URL

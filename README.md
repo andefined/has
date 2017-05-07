@@ -19,10 +19,10 @@ import (
 ## Methods
 
 ```go
-has.Email(s string) []string // email@example.com, email[at]example[dot]com
-has.IPv4(s string) []string // 192.168.1.1
+has.Email(s string) []string // email@example.com, email[at]example[dot]com, email [ at ] example [ dot ] com
+has.IPv4(s string) []string // 192.168.1.1, 10.0.0.0, 0.0.0.0, 256.256.256.256
 has.IPv6(s string) []string // 2001:0db8:0000:0000:0000:ff00:0042:8329
-has.MAC(s string) []string // 1a-cd-3f-ac-42-34-ed-ab
+has.MAC(s string) []string // 1a-cd-3f-ac-42-34-ed-ab, 1a:cd:3f:ac:42:34:ed:ab
 has.URL(s string) []string // https://domain.com
 has.Hostname(s string) []string // domain.com
 has.Domain(s string) []string // domain.com
