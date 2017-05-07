@@ -1,6 +1,6 @@
 # has
 
-Find patterns in strings.
+Find patterns in strings (wip)
 
 ## Installation
 
