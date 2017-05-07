@@ -25,6 +25,7 @@ const (
 	winpath    string = `^([a-zA-Z]):[\\\/]((?:[^<>:"\\\/\|\?\*]+[\\\/])*)([^<>:"\\\/\|\?\*]+)\.([^<>:"\\\/\|\?\*\s]+)$`
 	unixpath   string = `^(((?:\./|\.\./|/)?(?:\.?\w+/)*)(\.?\w+\.?\w+))$`
 	shellshock string = `\s*\(\s*\)\s*\{.*?;\s*\}\s*;`
+	cyrillic   string = `([\x{0400}-\x{052F}]+)`
 )
 
 var (
@@ -47,4 +48,5 @@ var (
 	ReWinPath    = regexp.MustCompile(winpath)
 	ReUnixPath   = regexp.MustCompile(unixpath)
 	ReShellShock = regexp.MustCompile(shellshock)
+	ReCyrillic   = regexp.MustCompile(cyrillic)
 )

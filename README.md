@@ -38,4 +38,5 @@ has.CreditCard(s string) []string // 1234-4567-8901-2345, 1234 4567 8901 2345
 has.WinPath(s string) []string // C:\Users\user\Desktop
 has.UnixPath(s string) []string // /usr/src/bin
 has.ShellShock(s string) []string // env x='() { :;}; echo vulnerable' bash -c "echo this is a test"
+has.Cyrillic(s string) []string // Привіт привет, Пламенный п. защитникам Родины
 ```

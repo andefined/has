@@ -148,3 +148,9 @@ func ShellShock(s string) []string {
 	elements := ReShellShock.FindAllString(s, -1)
 	return removeDuplicates(elements)
 }
+
+// Cyrillic : has.Cyrillic
+func Cyrillic(s string) []string {
+	elements := ReCyrillic.FindAllString(s, -1)
+	return removeDuplicates(elements)
+}
