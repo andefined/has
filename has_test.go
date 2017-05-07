@@ -9,7 +9,7 @@ import (
 )
 
 func TestAll(t *testing.T) {
-	dat, err := ioutil.ReadFile("examples/articles.md")
+	dat, err := ioutil.ReadFile("README.md")
 	if err != nil {
 		panic(err)
 	}
@@ -56,8 +56,8 @@ func TestAll(t *testing.T) {
 	uuids := has.UUID(string(dat))
 	fmt.Print("UUID: ", len(uuids), uuids, "\n")
 
-	bitcoinaddresses := has.BitcoinAddress(string(dat))
-	fmt.Print("BitcoinAddress: ", len(bitcoinaddresses), bitcoinaddresses, "\n")
+	bitcoin := has.Bitcoin(string(dat))
+	fmt.Print("Bitcoin: ", len(bitcoin), bitcoin, "\n")
 
 	creditcards := has.CreditCard(string(dat))
 	fmt.Print("CreditCard: ", len(creditcards), creditcards, "\n")
