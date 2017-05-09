@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/andefined/has.svg?branch=master)](https://travis-ci.org/andefined/has)
 [![Go Report Card](https://goreportcard.com/badge/github.com/andefined/has)](https://goreportcard.com/report/github.com/andefined/has)
 
 # has
