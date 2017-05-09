@@ -149,6 +149,12 @@ func ShellShock(s string) []string {
 	return removeDuplicates(elements)
 }
 
+// DataURI : has.DataURI
+func DataURI(s string) []string {
+	elements := ReDataURI.FindAllString(s, -1)
+	return removeDuplicates(elements)
+}
+
 // Cyrillic : has.Cyrillic
 func Cyrillic(s string) []string {
 	elements := ReCyrillic.FindAllString(s, -1)

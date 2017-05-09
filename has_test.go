@@ -71,6 +71,9 @@ func TestAll(t *testing.T) {
 	shellshocks := has.ShellShock(string(dat))
 	fmt.Print("ShellShock: ", len(shellshocks), shellshocks, "\n")
 
+	datauris := has.DataURI(string(dat))
+	fmt.Print("DataURI: ", len(datauris), datauris, "\n")
+
 	cyrillics := has.Cyrillic(string(dat))
 	fmt.Print("Cyrillic: ", len(cyrillics), cyrillics, "\n")
 }

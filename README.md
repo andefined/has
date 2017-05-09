@@ -23,7 +23,7 @@ has.Email(s string) []string // email@example.com, email[at]example[dot]com, ema
 has.IPv4(s string) []string // 192.168.1.1, 10.0.0.0, 0.0.0.0, 256.256.256.256
 has.IPv6(s string) []string // 2001:0db8:0000:0000:0000:ff00:0042:8329
 has.MAC(s string) []string // 1a-cd-3f-ac-42-34-ed-ab, 1a:cd:3f:ac:42:34:ed:ab
-has.URL(s string) []string // https://wwwdomain.com
+has.URL(s string) []string // https://www.domain.com, http://domain.com, https://github.com/andefined/has
 has.Hostname(s string) []string // domain.com
 has.Domain(s string) []string // domain.com
 has.DNS(s string) []string // localhost.local
@@ -38,5 +38,6 @@ has.CreditCard(s string) []string // 1234-4567-8901-2345, 1234 4567 8901 2345
 has.WinPath(s string) []string // C:\Users\user\Desktop
 has.UnixPath(s string) []string // /usr/src/bin
 has.ShellShock(s string) []string // env x='() { :;}; echo vulnerable' bash -c "echo this is a test"
+has.DataURI(s string) []string // data:text/html,%3Ch1%3EHello%2C%20World!%3C%2Fh1%3E, data:text/html,<script>alert('hi');</script>, data:text/plain;base64,SGVsbG8sIFdvcmxkIQ%3D%3D
 has.Cyrillic(s string) []string // Привіт привет, Пламенный п. защитникам Родины
 ```
