@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/andefined/has)](https://goreportcard.com/report/github.com/andefined/has)
+
 # has
 
 Find patterns in strings (wip)
