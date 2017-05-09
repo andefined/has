@@ -1,0 +1,9 @@
+language: go
+sudo: no
+branches:
+    only:
+        - master
+before_script:
+    - go vet ./...
+script:
+    - travis_wait 20 go test -p 10 -timeout 20m -v ./...;
